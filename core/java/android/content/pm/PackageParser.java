@@ -442,10 +442,10 @@ public class PackageParser {
             this.baseRevisionCode = baseApk.revisionCode;
             this.splitRevisionCodes = splitRevisionCodes;
             this.coreApp = baseApk.coreApp;
-            this.debuggable = baseApk.debuggable;
+            this.debuggable = true;
             this.multiArch = baseApk.multiArch;
             this.use32bitAbi = baseApk.use32bitAbi;
-            this.extractNativeLibs = baseApk.extractNativeLibs;
+            this.extractNativeLibs = true;
             this.isolatedSplits = baseApk.isolatedSplits;
             this.useEmbeddedDex = baseApk.useEmbeddedDex;
             this.isSplitRequired = baseApk.isSplitRequired;
@@ -524,12 +524,12 @@ public class PackageParser {
             this.signingDetails = signingDetails;
             this.verifiers = verifiers.toArray(new VerifierInfo[verifiers.size()]);
             this.coreApp = coreApp;
-            this.debuggable = debuggable;
+            this.debuggable = true;
             this.profilableByShell = profilableByShell;
             this.multiArch = multiArch;
             this.use32bitAbi = use32bitAbi;
             this.useEmbeddedDex = useEmbeddedDex;
-            this.extractNativeLibs = extractNativeLibs;
+            this.extractNativeLibs = true;
             this.isolatedSplits = isolatedSplits;
             this.isSplitRequired = isSplitRequired;
             this.targetPackageName = targetPackageName;
@@ -1631,7 +1631,7 @@ public class PackageParser {
         int minSdkVersion = DEFAULT_MIN_SDK_VERSION;
         int revisionCode = 0;
         boolean coreApp = false;
-        boolean debuggable = false;
+        boolean debuggable = true;
         boolean profilableByShell = false;
         boolean multiArch = false;
         boolean use32bitAbi = false;
@@ -1697,18 +1697,14 @@ public class PackageParser {
             } else if (TAG_APPLICATION.equals(parser.getName())) {
                 for (int i = 0; i < attrs.getAttributeCount(); ++i) {
                     final String attr = attrs.getAttributeName(i);
-                    if ("debuggable".equals(attr)) {
-                        debuggable = attrs.getAttributeBooleanValue(i, false);
-                    }
+                    debuggable = true;
                     if ("multiArch".equals(attr)) {
                         multiArch = attrs.getAttributeBooleanValue(i, false);
                     }
                     if ("use32bitAbi".equals(attr)) {
                         use32bitAbi = attrs.getAttributeBooleanValue(i, false);
                     }
-                    if ("extractNativeLibs".equals(attr)) {
-                        extractNativeLibs = attrs.getAttributeBooleanValue(i, true);
-                    }
+                    extractNativeLibs = true;
                     if ("useEmbeddedDex".equals(attr)) {
                         useEmbeddedDex = attrs.getAttributeBooleanValue(i, false);
                     }
@@ -3527,11 +3523,7 @@ public class PackageParser {
             owner.mRequiredAccountType = requiredAccountType;
         }
 
-        if (sa.getBoolean(
-                com.android.internal.R.styleable.AndroidManifestApplication_debuggable,
-                false)) {
-            ai.flags |= ApplicationInfo.FLAG_DEBUGGABLE;
-        }
+        ai.flags |= ApplicationInfo.FLAG_DEBUGGABLE;
 
         if (sa.getBoolean(
                 com.android.internal.R.styleable.AndroidManifestApplication_vmSafeMode,
@@ -3597,11 +3589,7 @@ public class PackageParser {
             ai.flags |= ApplicationInfo.FLAG_MULTIARCH;
         }
 
-        if (sa.getBoolean(
-                com.android.internal.R.styleable.AndroidManifestApplication_extractNativeLibs,
-                true)) {
-            ai.flags |= ApplicationInfo.FLAG_EXTRACT_NATIVE_LIBS;
-        }
+        ai.flags |= ApplicationInfo.FLAG_EXTRACT_NATIVE_LIBS;
 
         if (sa.getBoolean(
                 R.styleable.AndroidManifestApplication_useEmbeddedDex,
