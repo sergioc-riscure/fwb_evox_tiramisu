@@ -479,8 +479,7 @@ public class ApkLiteParseUtils {
                         false);
                 use32bitAbi = parser.getAttributeBooleanValue(ANDROID_RES_NAMESPACE, "use32bitAbi",
                         false);
-                extractNativeLibs = parser.getAttributeBooleanValue(ANDROID_RES_NAMESPACE,
-                        "extractNativeLibs", true);
+                extractNativeLibs = true;
                 useEmbeddedDex = parser.getAttributeBooleanValue(ANDROID_RES_NAMESPACE,
                         "useEmbeddedDex", false);
                 rollbackDataPolicy = parser.getAttributeIntValue(ANDROID_RES_NAMESPACE,

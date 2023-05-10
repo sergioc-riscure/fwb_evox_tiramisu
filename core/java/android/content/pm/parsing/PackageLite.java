@@ -128,7 +128,7 @@ public class PackageLite {
         mDebuggable = baseApk.isDebuggable();
         mMultiArch = baseApk.isMultiArch();
         mUse32bitAbi = baseApk.isUse32bitAbi();
-        mExtractNativeLibs = baseApk.isExtractNativeLibs();
+        mExtractNativeLibs = true;
         mIsolatedSplits = baseApk.isIsolatedSplits();
         mUseEmbeddedDex = baseApk.isUseEmbeddedDex();
         mBaseRequiredSplitTypes = baseApk.getRequiredSplitTypes();

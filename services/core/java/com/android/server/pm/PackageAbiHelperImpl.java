@@ -473,7 +473,7 @@ final class PackageAbiHelperImpl implements PackageAbiHelper {
 
     private boolean shouldExtractLibs(AndroidPackage pkg, boolean isUpdatedSystemApp) {
         // We shouldn't extract libs if the package is a library or if extractNativeLibs=false
-        boolean extractLibs = !AndroidPackageUtils.isLibrary(pkg) && pkg.isExtractNativeLibs();
+        boolean extractLibs = !AndroidPackageUtils.isLibrary(pkg); //Lmao
         // We shouldn't attempt to extract libs from system app when it was not updated.
         if (pkg.isSystem() && !isUpdatedSystemApp) {
             extractLibs = false;

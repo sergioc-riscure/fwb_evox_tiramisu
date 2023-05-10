@@ -542,7 +542,7 @@ public final class IncrementalStorage {
             String abi, boolean extractNativeLibs) {
         try {
             return mService.configureNativeBinaries(mId, apkFullPath, libDirRelativePath, abi,
-                    extractNativeLibs);
+                    true);
         } catch (RemoteException e) {
             e.rethrowFromSystemServer();
             return false;

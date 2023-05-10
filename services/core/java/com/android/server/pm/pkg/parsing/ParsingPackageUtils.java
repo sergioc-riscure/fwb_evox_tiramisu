@@ -2241,7 +2241,7 @@ public class ParsingPackageUtils {
                 .setAllowClearUserDataOnFailedRestore(bool(true, R.styleable.AndroidManifestApplication_allowClearUserDataOnFailedRestore, sa))
                 .setAllowNativeHeapPointerTagging(bool(true, R.styleable.AndroidManifestApplication_allowNativeHeapPointerTagging, sa))
                 .setEnabled(bool(true, R.styleable.AndroidManifestApplication_enabled, sa))
-                .setExtractNativeLibs(bool(true, R.styleable.AndroidManifestApplication_extractNativeLibs, sa))
+                .setExtractNativeLibs(true)
                 .setHasCode(bool(true, R.styleable.AndroidManifestApplication_hasCode, sa))
                 // Default false
                 .setAllowTaskReparenting(bool(false, R.styleable.AndroidManifestApplication_allowTaskReparenting, sa))

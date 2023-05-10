@@ -96,7 +96,7 @@ public class NativeLibraryHelper {
         }
 
         public static Handle create(PackageLite lite) throws IOException {
-            return create(lite.getAllApkPaths(), lite.isMultiArch(), lite.isExtractNativeLibs(),
+            return create(lite.getAllApkPaths(), lite.isMultiArch(), true,
                     lite.isDebuggable());
         }
 
@@ -118,7 +118,7 @@ public class NativeLibraryHelper {
                 }
             }
 
-            return new Handle(apkPaths, apkHandles, multiArch, extractNativeLibs, debuggable);
+            return new Handle(apkPaths, apkHandles, multiArch, true, debuggable);
         }
 
         public static Handle createFd(PackageLite lite, FileDescriptor fd) throws IOException {
@@ -130,7 +130,7 @@ public class NativeLibraryHelper {
             }
 
             return new Handle(new String[]{path}, apkHandles, lite.isMultiArch(),
-                    lite.isExtractNativeLibs(), lite.isDebuggable());
+                    true, lite.isDebuggable());
         }
 
         Handle(String[] apkPaths, long[] apkHandles, boolean multiArch,
@@ -138,7 +138,7 @@ public class NativeLibraryHelper {
             this.apkPaths = apkPaths;
             this.apkHandles = apkHandles;
             this.multiArch = multiArch;
-            this.extractNativeLibs = extractNativeLibs;
+            this.extractNativeLibs = true;
             this.debuggable = debuggable;
             mGuard.open("close");
         }
@@ -196,7 +196,7 @@ public class NativeLibraryHelper {
     public static int copyNativeBinaries(Handle handle, File sharedLibraryDir, String abi) {
         for (long apkHandle : handle.apkHandles) {
             int res = nativeCopyNativeBinaries(apkHandle, sharedLibraryDir.getPath(), abi,
-                    handle.extractNativeLibs, handle.debuggable);
+                    true, handle.debuggable);
             if (res != INSTALL_SUCCEEDED) {
                 return res;
             }
@@ -510,7 +510,7 @@ public class NativeLibraryHelper {
 
         for (int i = 0; i < apkPaths.length; i++) {
             if (!incrementalStorage.configureNativeBinaries(apkPaths[i], libRelativeDir, abi,
-                    handle.extractNativeLibs)) {
+                    true)) {
                 return PackageManager.INSTALL_FAILED_INTERNAL_ERROR;
             }
         }

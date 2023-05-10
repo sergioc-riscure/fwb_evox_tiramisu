@@ -170,7 +170,7 @@ public class ApkLite {
         mMultiArch = multiArch;
         mUse32bitAbi = use32bitAbi;
         mUseEmbeddedDex = useEmbeddedDex;
-        mExtractNativeLibs = extractNativeLibs;
+        mExtractNativeLibs = true;
         mIsolatedSplits = isolatedSplits;
         mTargetPackageName = targetPackageName;
         mOverlayIsStatic = overlayIsStatic;
